@@ -67,8 +67,8 @@ class DataLoader(object):
             run_monitoring_thread=False,
             handle_uncaught_exceptions=True
         ) as neptune_exp:
-            if run.info.artifact_uri.startswith('file:/'):
-                artifacts_path = run.info.artifact_uri[6:]
+            if run.info.artifact_uri.startswith('file:///'):
+                artifacts_path = run.info.artifact_uri[8:]
                 with path_utils.Path(artifacts_path):
                     for artifact in os.listdir(artifacts_path):
                         neptune_exp.send_artifact(artifact)
